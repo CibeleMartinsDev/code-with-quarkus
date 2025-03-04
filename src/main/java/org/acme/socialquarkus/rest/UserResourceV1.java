@@ -31,16 +31,15 @@ public class UserResourceV1 {
     }
 
     @PUT
-    public Response updateUser(UserRequest request){
-
-        return Response.ok().build();
+    @Path("/{id}")
+    public Response updateUser(@PathParam("id") Integer id, UserRequest request){
+        return Response.ok(userService.putUserById(id, request)).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response getUser(){
-
-        return Response.ok().build();
+    public Response getUser(@PathParam("id") Integer id) {
+        return Response.ok(userService.getUserById(id)).build();
     }
 
     @GET
@@ -49,9 +48,9 @@ public class UserResourceV1 {
     }
 
     @DELETE
+    @Path("/{id}")
     public Response deleteUser(@PathParam("id") String id){
-
-        return Response.ok().build();
+        return userService.deleteUserById(id);
     }
 
 
